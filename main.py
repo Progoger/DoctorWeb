@@ -58,6 +58,8 @@ def upload_file():
                 break
             sha.update(data)
         file_hash = sha.hexdigest()
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.mkdir(app.config['UPLOAD_FOLDER'])
         directory = app.config['UPLOAD_FOLDER'] + '\\' + file_hash[0:2]
         if not os.path.exists(directory):
             os.mkdir(directory)
